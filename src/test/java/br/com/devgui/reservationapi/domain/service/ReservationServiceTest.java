@@ -286,13 +286,6 @@ class ReservationServiceTest {
     @DisplayName("Given No Existing Id When Confirm Then Throw ResourceNotFoundException")
     void givenNoExistingId_WhenConfirm_ThenThrowResourceNotFoundException() {
         UUID id = UUID.randomUUID();
-        Reservation reservation = new Reservation(
-                "Guilherme", "guilherme@email.com",
-                LocalDateTime.of(2026, 7, 20, 10, 0),
-                LocalDateTime.of(2026, 7, 18, 10, 0),
-                3, ReservationStatus.PENDING
-        );
-
         when(reservationRepository.findById(id)).thenReturn(Optional.empty());
 
         assertThrows(ResourceNotFoundException.class,
