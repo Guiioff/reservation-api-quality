@@ -86,4 +86,22 @@ public class ReservationService {
         reservation.cancel();
         return reservationRepository.save(reservation);
     }
+
+    public Reservation complete(UUID id) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id " + id));
+
+        List<ReservationStatus> invalidStatuses = List.of(ReservationStatus.COMPLETED, ReservationStatus.CANCELLED);
+
+        if (invalidStatuses.contains(reservation.getStatus())) {
+            throw new InvalidReservationStatusException(
+                    "Reservation with id " + id +
+                            " cannot be completed because its status is " +
+                            reservation.getStatus()
+            );
+        }
+
+        reservation.complete();
+        return reservationRepository.save(reservation);
+    }
 }
