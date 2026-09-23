@@ -12,7 +12,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
@@ -35,8 +34,8 @@ class ReservationServiceTest {
     void givenValidReservation_WhenCreateReservation_ThenReturnSavedReservation() {
         Reservation reservation = new Reservation(
                 "Guilherme", "guilherme@email.com",
-                LocalDateTime.of(2026, 07, 18, 10, 00),
-                LocalDateTime.of(2026, 07, 20, 10, 00),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                LocalDateTime.of(2026, 7, 20, 10, 0),
                 3
         );
         when(reservationRepository.save(reservation)).thenReturn(reservation);
@@ -44,7 +43,7 @@ class ReservationServiceTest {
                 reservation.getStartAt(),
                 reservation.getEndAt(),
                 List.of(ReservationStatus.PENDING, ReservationStatus.CONFIRMED)
-        )).thenReturn(Boolean.FALSE);
+        )).thenReturn(false);
 
         Reservation savedReservation = reservationService.create(reservation);
 
@@ -57,14 +56,15 @@ class ReservationServiceTest {
     void givenInvalidDateRange_WhenCreateReservation_ThenThrowInvalidReservationException() {
         Reservation reservation = new Reservation(
                 "Guilherme", "guilherme@email.com",
-                LocalDateTime.of(2026, 07, 20, 10, 00),
-                LocalDateTime.of(2026, 07, 18, 10, 00),
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
                 3
         );
 
         assertThrows(InvalidReservationException.class, () ->
             reservationService.create(reservation)
         );
+        verify(reservationRepository, never()).save(any(Reservation.class));
     }
 
     @Test
@@ -81,6 +81,7 @@ class ReservationServiceTest {
         assertThrows(InvalidReservationException.class, () ->
                 reservationService.create(reservation)
         );
+        verify(reservationRepository, never()).save(any(Reservation.class));
     }
 
     @ParameterizedTest
@@ -89,14 +90,15 @@ class ReservationServiceTest {
     void givenInvalidPeopleQuantity_WhenCreateReservation_ThenThrowInvalidReservationException(Integer peopleQuantity) {
         Reservation reservation = new Reservation(
                 "Guilherme", "guilherme@email.com",
-                LocalDateTime.of(2026, 07, 18, 10, 00),
-                LocalDateTime.of(2026, 07, 20, 10, 00),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                LocalDateTime.of(2026, 7, 20, 10, 0),
                 peopleQuantity
         );
 
         assertThrows(InvalidReservationException.class, () ->
             reservationService.create(reservation)
         );
+        verify(reservationRepository, never()).save(any(Reservation.class));
     }
 
     @Test
@@ -104,19 +106,19 @@ class ReservationServiceTest {
     void givenConflictingReservation_WhenCreateReservation_ThenThrowReservationConflictException() {
         Reservation reservation = new Reservation(
                 "Guilherme", "guilherme@email.com",
-                LocalDateTime.of(2026, 07, 18, 10, 00),
-                LocalDateTime.of(2026, 07, 20, 10, 00),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                LocalDateTime.of(2026, 7, 20, 10, 0),
                 3
         );
 
         when(reservationRepository.existsConflict(
                 reservation.getStartAt(), reservation.getEndAt(),
                 List.of(ReservationStatus.PENDING, ReservationStatus.CONFIRMED)
-        )).thenReturn(Boolean.TRUE);
+        )).thenReturn(true);
 
         assertThrows(ReservationConflictException.class, () ->
             reservationService.create(reservation)
         );
-        verify(reservationRepository, never()).save(any());
+        verify(reservationRepository, never()).save(any(Reservation.class));
     }
 }
