@@ -387,4 +387,98 @@ class ReservationServiceTest {
 
         verify(reservationRepository, never()).save(any(Reservation.class));
     }
+
+    @Test
+    @DisplayName("Given Pending Reservation When Complete Then Return A Valid Reservation")
+    void givenPendingReservation_WhenComplete_ThenReturnAValidReservation(){
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.PENDING
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+        when(reservationRepository.save(reservation)).thenReturn(reservation);
+
+        Reservation returnedReservation = reservationService.complete(id);
+
+        assertNotNull(returnedReservation);
+        assertEquals(ReservationStatus.COMPLETED, returnedReservation.getStatus());
+        assertEquals(reservation.getCustomerName(), returnedReservation.getCustomerName());
+        assertEquals(reservation.getCustomerEmail(), returnedReservation.getCustomerEmail());
+    }
+
+    @Test
+    @DisplayName("Given Confirmed Reservation When Complete Then Return A Valid Reservation")
+    void givenConfirmedReservation_WhenComplete_ThenReturnAValidReservation(){
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.CONFIRMED
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+        when(reservationRepository.save(reservation)).thenReturn(reservation);
+
+        Reservation returnedReservation = reservationService.complete(id);
+
+        assertNotNull(returnedReservation);
+        assertEquals(ReservationStatus.COMPLETED, returnedReservation.getStatus());
+        assertEquals(reservation.getCustomerName(), returnedReservation.getCustomerName());
+        assertEquals(reservation.getCustomerEmail(), returnedReservation.getCustomerEmail());
+    }
+
+    @Test
+    @DisplayName("Given Completed Reservation When Complete Then Throw InvalidReservationStatusException")
+    void givenCompletedReservation_WhenComplete_ThenThrowInvalidReservationStatusException(){
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.COMPLETED
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+
+        assertThrows(InvalidReservationStatusException.class,
+                () -> reservationService.complete(id));
+
+        verify(reservationRepository, never()).save(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given Cancelled Reservation When Complete Then Throw InvalidReservationStatusException")
+    void givenCancelledReservation_WhenComplete_ThenThrowInvalidReservationStatusException(){
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.CANCELLED
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+
+        assertThrows(InvalidReservationStatusException.class,
+                () -> reservationService.complete(id));
+
+        verify(reservationRepository, never()).save(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given No Existing Id When Complete Then Throw ResourceNotFoundException")
+    void givenNoExistingId_WhenComplete_ThenThrowResourceNotFoundException() {
+        UUID id = UUID.randomUUID();
+        when(reservationRepository.findById(id)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class,
+                () -> reservationService.complete(id));
+
+        verify(reservationRepository, never()).save(any(Reservation.class));
+    }
 }
