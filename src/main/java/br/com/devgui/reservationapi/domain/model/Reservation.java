@@ -64,6 +64,18 @@ public class Reservation {
         this.status = status;
     }
 
+    public Reservation(UUID id, String customerName, String customerEmail, LocalDateTime startAt, LocalDateTime endAt, Integer people, ReservationStatus status, Instant createdAt, Instant updatedAt) {
+        this.id = id;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.startAt = startAt;
+        this.endAt = endAt;
+        this.people = people;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     protected Reservation() {}
 
     public void complete() {
