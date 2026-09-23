@@ -1,6 +1,7 @@
 package br.com.devgui.reservationapi.domain.service;
 
 import br.com.devgui.reservationapi.domain.exception.InvalidReservationException;
+import br.com.devgui.reservationapi.domain.exception.InvalidReservationStatusException;
 import br.com.devgui.reservationapi.domain.exception.ReservationConflictException;
 import br.com.devgui.reservationapi.domain.exception.ResourceNotFoundException;
 import br.com.devgui.reservationapi.domain.model.Reservation;
@@ -18,10 +19,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -202,5 +201,103 @@ class ReservationServiceTest {
 
         assertNotNull(returnedReservations);
         assertTrue(returnedReservations.isEmpty());
+    }
+
+    @Test
+    @DisplayName("Given Pending Reservation When Confirm Then Return A Valid Reservation")
+    void givenPendingReservation_WhenConfirm_ThenReturnAValidReservation() {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.PENDING
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+        when(reservationRepository.save(reservation)).thenReturn(reservation);
+
+        Reservation returnedReservation = reservationService.confirm(id);
+
+        assertNotNull(returnedReservation);
+        assertEquals(ReservationStatus.CONFIRMED, returnedReservation.getStatus());
+        assertEquals(reservation.getCustomerName(), returnedReservation.getCustomerName());
+        assertEquals(reservation.getCustomerEmail(), returnedReservation.getCustomerEmail());
+    }
+
+    @Test
+    @DisplayName("Given Cancelled Reservation When Confirm Then Throw InvalidReservationStatusException")
+    void givenCancelledReservation_WhenConfirm_ThenThrowInvalidReservationStatusException() {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.CANCELLED
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+
+        assertThrows(InvalidReservationStatusException.class,
+                () -> reservationService.confirm(id));
+
+        verify(reservationRepository, never()).save(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given Completed Reservation When Confirm Then Throw InvalidReservationStatusException")
+    void givenCompletedReservation_WhenConfirm_ThenThrowInvalidReservationStatusException() {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.COMPLETED
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+
+        assertThrows(InvalidReservationStatusException.class,
+                () -> reservationService.confirm(id));
+
+        verify(reservationRepository, never()).save(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given Confirmed Reservation When Confirm Then Throw InvalidReservationStatusException")
+    void givenConfirmedReservation_WhenConfirm_ThenThrowInvalidReservationStatusException() {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.CONFIRMED
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.of(reservation));
+
+        assertThrows(InvalidReservationStatusException.class,
+                () -> reservationService.confirm(id));
+
+        verify(reservationRepository, never()).save(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given No Existing Id When Confirm Then Throw ResourceNotFoundException")
+    void givenNoExistingId_WhenConfirm_ThenThrowResourceNotFoundException() {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                3, ReservationStatus.PENDING
+        );
+
+        when(reservationRepository.findById(id)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class,
+                () -> reservationService.confirm(id));
+
+        verify(reservationRepository, never()).save(any(Reservation.class));
     }
 }
