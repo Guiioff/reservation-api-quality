@@ -2,6 +2,7 @@ package br.com.devgui.reservationapi.domain.service;
 
 import br.com.devgui.reservationapi.domain.exception.InvalidReservationException;
 import br.com.devgui.reservationapi.domain.exception.ReservationConflictException;
+import br.com.devgui.reservationapi.domain.exception.ResourceNotFoundException;
 import br.com.devgui.reservationapi.domain.model.Reservation;
 import br.com.devgui.reservationapi.domain.model.enums.ReservationStatus;
 import br.com.devgui.reservationapi.infraestructure.repository.ReservationRepository;
@@ -16,6 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -120,5 +123,38 @@ class ReservationServiceTest {
             reservationService.create(reservation)
         );
         verify(reservationRepository, never()).save(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given Valid Id When FindById Then Return Reservation")
+    void givenValidId_WhenFindById_ThenReturnReservation() {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                3
+        );
+
+        when(reservationRepository.findById(id))
+                .thenReturn(Optional.of(reservation));
+
+        Reservation returnedReservation = reservationService.findById(id);
+
+        assertNotNull(returnedReservation);
+        assertEquals(reservation.getCustomerName(), returnedReservation.getCustomerName());
+        assertEquals(reservation.getCustomerEmail(), returnedReservation.getCustomerEmail());
+        verify(reservationRepository).findById(id);
+    }
+
+    @Test
+    @DisplayName("Given No Existing Id When FindById Then Throw ResourceNotFoundException")
+    void givenNoExistingId_WhenFindById_ThenThrowResourceNotFoundException() {
+        UUID id = UUID.randomUUID();
+        when(reservationRepository.findById(id))
+                .thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class,
+                () -> reservationService.findById(id));
     }
 }
