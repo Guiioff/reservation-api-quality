@@ -6,6 +6,8 @@ import br.com.devgui.reservationapi.domain.exception.ResourceNotFoundException;
 import br.com.devgui.reservationapi.domain.model.Reservation;
 import br.com.devgui.reservationapi.domain.model.enums.ReservationStatus;
 import br.com.devgui.reservationapi.infraestructure.repository.ReservationRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,5 +47,9 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id " + id));
         return reservation;
+    }
+
+    public Page<Reservation> findAll(Pageable pageable) {
+        return reservationRepository.findAll(pageable);
     }
 }
