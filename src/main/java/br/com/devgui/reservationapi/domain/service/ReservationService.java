@@ -1,6 +1,7 @@
 package br.com.devgui.reservationapi.domain.service;
 
 import br.com.devgui.reservationapi.domain.exception.InvalidReservationException;
+import br.com.devgui.reservationapi.domain.exception.InvalidReservationStatusException;
 import br.com.devgui.reservationapi.domain.exception.ReservationConflictException;
 import br.com.devgui.reservationapi.domain.exception.ResourceNotFoundException;
 import br.com.devgui.reservationapi.domain.model.Reservation;
@@ -51,5 +52,20 @@ public class ReservationService {
 
     public Page<Reservation> findAll(Pageable pageable) {
         return reservationRepository.findAll(pageable);
+    }
+
+    public Reservation confirm(UUID id) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id " + id));
+
+        if (!reservation.getStatus().equals(ReservationStatus.PENDING)) {
+            throw new InvalidReservationStatusException(
+                    "Reservation with id " + id +
+                    " cannot be confirmed because its status is " +
+                    reservation.getStatus());
+        }
+
+        reservation.confirm();
+        return reservationRepository.save(reservation);
     }
 }

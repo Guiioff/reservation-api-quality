@@ -55,6 +55,15 @@ public class Reservation {
         this.status = ReservationStatus.PENDING;
     }
 
+    public Reservation(String customerName, String customerEmail, LocalDateTime startAt, LocalDateTime endAt, Integer people, ReservationStatus status) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.startAt = startAt;
+        this.endAt = endAt;
+        this.people = people;
+        this.status = status;
+    }
+
     protected Reservation() {}
 
     public void complete() {
