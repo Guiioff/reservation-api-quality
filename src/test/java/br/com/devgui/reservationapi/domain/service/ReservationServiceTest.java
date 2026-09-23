@@ -14,8 +14,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -156,5 +162,45 @@ class ReservationServiceTest {
 
         assertThrows(ResourceNotFoundException.class,
                 () -> reservationService.findById(id));
+    }
+
+    @Test
+    @DisplayName("Given Reservations List When FindAll Then Return Reservations Page")
+    void givenReservationsList_WhenFindAll_ThenReturnReservationsPage() {
+        Reservation reservation1 = new Reservation(
+                "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 7, 18, 10, 0),
+                LocalDateTime.of(2026, 7, 20, 10, 0),
+                3
+        );
+        Reservation reservation2 = new Reservation(
+                "Leandro", "leandro@email.com",
+                LocalDateTime.of(2026, 12, 23, 10, 0),
+                LocalDateTime.of(2027, 1, 2, 10, 0),
+                5
+        );
+        List<Reservation> reservations = List.of(reservation1, reservation2);
+        Pageable pageable = PageRequest.of(0, 2);
+
+        when(reservationRepository.findAll(pageable)).thenReturn(new PageImpl<>(reservations));
+
+        Page<Reservation> returnedReservations = reservationService.findAll(pageable);
+
+        assertNotNull(returnedReservations);
+        assertFalse(returnedReservations.isEmpty());
+        assertEquals(reservations, returnedReservations.getContent());
+        assertEquals(reservations.size(), returnedReservations.getTotalElements());
+    }
+
+    @Test
+    @DisplayName("Given Empty Reservations List When FindAll Then Return Empty Reservations Page")
+    void givenEmptyReservationsList_WhenFindAll_ThenReturnEmptyReservationsPage() {
+        Pageable pageable = PageRequest.of(0, 2);
+        when(reservationRepository.findAll(pageable)).thenReturn(Page.empty());
+
+        Page<Reservation> returnedReservations = reservationService.findAll(pageable);
+
+        assertNotNull(returnedReservations);
+        assertTrue(returnedReservations.isEmpty());
     }
 }
