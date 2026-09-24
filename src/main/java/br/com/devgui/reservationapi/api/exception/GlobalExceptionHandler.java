@@ -4,6 +4,7 @@ import br.com.devgui.reservationapi.api.dto.error.ErrorResponse;
 import br.com.devgui.reservationapi.api.dto.error.FieldErrorDetail;
 import br.com.devgui.reservationapi.api.dto.error.ValidationErrorResponse;
 import br.com.devgui.reservationapi.domain.exception.InvalidReservationException;
+import br.com.devgui.reservationapi.domain.exception.InvalidReservationStatusException;
 import br.com.devgui.reservationapi.domain.exception.ReservationConflictException;
 import br.com.devgui.reservationapi.domain.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -79,5 +80,18 @@ public class GlobalExceptionHandler {
                 request.getRequestURI()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(InvalidReservationStatusException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidReservationStatusException(
+            InvalidReservationStatusException ex, HttpServletRequest request){
+        ErrorResponse errorResponse = new ErrorResponse(
+                Instant.now(),
+                HttpStatus.UNPROCESSABLE_CONTENT.value(),
+                "Business rule violation",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.unprocessableContent().body(errorResponse);
     }
 }
