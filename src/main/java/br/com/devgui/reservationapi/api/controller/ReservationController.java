@@ -66,4 +66,11 @@ public class ReservationController {
         ReservationCompleteResponse response = reservationMapper.toCompleteResponse(reservation);
         return ResponseEntity.ok(response);
     }
+
+    @PatchMapping("/{id}/cancel")
+    public ResponseEntity<ReservationCompleteResponse> cancel(@PathVariable UUID id) {
+        Reservation reservation = reservationService.cancel(id);
+        ReservationCompleteResponse response = reservationMapper.toCompleteResponse(reservation);
+        return ResponseEntity.ok(response);
+    }
 }
