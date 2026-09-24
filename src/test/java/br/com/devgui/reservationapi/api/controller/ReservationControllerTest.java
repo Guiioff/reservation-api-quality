@@ -435,4 +435,89 @@ class ReservationControllerTest {
         verify(reservationService).confirm(id);
         verify(reservationMapper, never()).toCompleteResponse(any(Reservation.class));
     }
+
+    @Test
+    @DisplayName("Given valid reservation id with valid status When cancel reservation Then return 200 ok")
+    void givenValidReservationIdWithValidStatus_WhenCancelReservation_ThenReturn200() throws Exception {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                id, "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 9, 25, 10, 0),
+                LocalDateTime.of(2026, 9, 25, 12, 0), 3,
+                ReservationStatus.CANCELLED, Instant.now(), Instant.now()
+        );
+        ReservationCompleteResponse responseDTO = new ReservationCompleteResponse(
+                id, reservation.getCustomerName(), reservation.getCustomerEmail(),
+                reservation.getStartAt(), reservation.getEndAt(), reservation.getPeople(),
+                reservation.getStatus(), Instant.now(), Instant.now()
+        );
+
+        when(reservationService.cancel(id)).thenReturn(reservation);
+        when(reservationMapper.toCompleteResponse(reservation)).thenReturn(responseDTO);
+
+        ResultActions response = mockMvc.perform(patch(URL + "/{id}/cancel", id));
+
+        response
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(id.toString()))
+                .andExpect(jsonPath("$.customerName").value(reservation.getCustomerName()))
+                .andExpect(jsonPath("$.customerEmail").value(reservation.getCustomerEmail()))
+                .andExpect(jsonPath("$.startAt").isNotEmpty())
+                .andExpect(jsonPath("$.endAt").isNotEmpty())
+                .andExpect(jsonPath("$.people").value(reservation.getPeople()))
+                .andExpect(jsonPath("$.status").value(ReservationStatus.CANCELLED.toString()));
+
+        verify(reservationService).cancel(id);
+        verify(reservationMapper).toCompleteResponse(reservation);
+    }
+
+    @Test
+    @DisplayName("Given valid reservation id with invalid status When cancel reservation Then return 422 unprocessable content")
+    void givenValidReservationIdWithInvalidStatus_WhenCancelReservation_ThenReturn422() throws Exception {
+        UUID id = UUID.randomUUID();
+
+        when(reservationService.cancel(id)).thenThrow(
+                new InvalidReservationStatusException("Reservation with id " + id +
+                                " cannot be cancelled its status is invalid for this operation"));
+
+        ResultActions response = mockMvc.perform(patch(URL + "/{id}/cancel", id));
+
+        response
+                .andDo(print())
+                .andExpect(status().isUnprocessableContent())
+                .andExpect(jsonPath("$.timestamp").isNotEmpty())
+                .andExpect(jsonPath("$.statusCode").value(HttpStatus.UNPROCESSABLE_ENTITY.value()))
+                .andExpect(jsonPath("$.error").value("Business rule violation"))
+                .andExpect(jsonPath("$.message").value(
+                        "Reservation with id " + id +
+                                " cannot be cancelled its status is invalid for this operation"))
+                .andExpect(jsonPath("$.path").value(URL + "/" + id + "/cancel"));
+
+        verify(reservationService).cancel(id);
+        verify(reservationMapper, never()).toCompleteResponse(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given no existing id When cancel reservation Then return 404 not found")
+    void givenNoExistingId_WhenCancelReservation_ThenReturn404() throws Exception {
+        UUID id = UUID.randomUUID();
+
+        when(reservationService.cancel(id)).thenThrow(
+                new ResourceNotFoundException("Reservation not found with id " + id));
+
+        ResultActions response = mockMvc.perform(patch(URL + "/{id}/cancel", id));
+
+        response
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.timestamp").isNotEmpty())
+                .andExpect(jsonPath("$.statusCode").value(HttpStatus.NOT_FOUND.value()))
+                .andExpect(jsonPath("$.error").value("Resource not found"))
+                .andExpect(jsonPath("$.message").value("Reservation not found with id " + id))
+                .andExpect(jsonPath("$.path").value(URL + "/" + id + "/cancel"));
+
+        verify(reservationService).cancel(id);
+        verify(reservationMapper, never()).toCompleteResponse(any(Reservation.class));
+    }
 }
