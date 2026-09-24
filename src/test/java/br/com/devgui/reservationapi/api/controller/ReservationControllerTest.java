@@ -5,6 +5,7 @@ import br.com.devgui.reservationapi.api.dto.response.ReservationCompleteResponse
 import br.com.devgui.reservationapi.api.mapper.ReservationMapper;
 import br.com.devgui.reservationapi.domain.exception.InvalidReservationException;
 import br.com.devgui.reservationapi.domain.exception.ReservationConflictException;
+import br.com.devgui.reservationapi.domain.exception.ResourceNotFoundException;
 import br.com.devgui.reservationapi.domain.model.Reservation;
 import br.com.devgui.reservationapi.domain.model.enums.ReservationStatus;
 import br.com.devgui.reservationapi.domain.service.ReservationService;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -190,6 +192,65 @@ class ReservationControllerTest {
 
         verify(reservationMapper).toEntity(eq(requestDTO));
         verify(reservationService).create(reservation);
+        verify(reservationMapper, never()).toCompleteResponse(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given existing id When find reservation by id Then return 200 ok")
+    void givenExistingId_WhenFindReservationById_ThenReturn200() throws Exception {
+        UUID id = UUID.randomUUID();
+        Reservation reservation = new Reservation(
+                id, "Guilherme", "guilherme@email.com",
+                LocalDateTime.of(2026, 9, 25, 10, 0),
+                LocalDateTime.of(2026, 9, 25, 12, 0), 3,
+                ReservationStatus.PENDING, Instant.now(), Instant.now()
+        );
+        ReservationCompleteResponse responseDTO = new ReservationCompleteResponse(
+                id, reservation.getCustomerName(), reservation.getCustomerEmail(),
+                reservation.getStartAt(), reservation.getEndAt(), reservation.getPeople(),
+                reservation.getStatus(), Instant.now(), Instant.now()
+        );
+        when(reservationService.findById(id)).thenReturn(reservation);
+        when(reservationMapper.toCompleteResponse(reservation)).thenReturn(responseDTO);
+
+        ResultActions response = mockMvc.perform(get(URL + "/{id}", id));
+
+        response
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(id.toString()))
+                .andExpect(jsonPath("$.customerName").value(reservation.getCustomerName()))
+                .andExpect(jsonPath("$.customerEmail").value(reservation.getCustomerEmail()))
+                .andExpect(jsonPath("$.startAt").isNotEmpty())
+                .andExpect(jsonPath("$.endAt").isNotEmpty())
+                .andExpect(jsonPath("$.people").value(reservation.getPeople()))
+                .andExpect(jsonPath("$.status").value(reservation.getStatus().toString()));
+
+        verify(reservationService).findById(id);
+        verify(reservationMapper).toCompleteResponse(reservation);
+    }
+
+    @Test
+    @DisplayName("Given no existing id When find reservation by id Then return 404 not found")
+    void givenNoExistingId_WhenFindReservationById_ThenReturn404() throws Exception {
+        UUID id = UUID.randomUUID();
+
+        when(reservationService.findById(id)).thenThrow(
+                new ResourceNotFoundException("Reservation not found with id " + id)
+        );
+
+        ResultActions response = mockMvc.perform(get(URL + "/{id}", id));
+
+        response
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.timestamp").isNotEmpty())
+                .andExpect(jsonPath("$.statusCode").value(HttpStatus.NOT_FOUND.value()))
+                .andExpect(jsonPath("$.error").value("Resource not found"))
+                .andExpect(jsonPath("$.message").value("Reservation not found with id " + id.toString()))
+                .andExpect(jsonPath("$.path").value(URL + "/" + id.toString()));
+
+        verify(reservationService).findById(id);
         verify(reservationMapper, never()).toCompleteResponse(any(Reservation.class));
     }
 }
