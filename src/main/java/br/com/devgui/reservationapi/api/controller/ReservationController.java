@@ -8,13 +8,11 @@ import br.com.devgui.reservationapi.domain.service.ReservationService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.UUID;
 
 @RestController()
 @RequestMapping("/api/reservations")
@@ -41,5 +39,12 @@ public class ReservationController {
 
         ReservationCompleteResponse response = reservationMapper.toCompleteResponse(savedReservation);
         return ResponseEntity.created(location).body(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ReservationCompleteResponse> getById(@PathVariable UUID id) {
+        Reservation reservation = reservationService.findById(id);
+        ReservationCompleteResponse response = reservationMapper.toCompleteResponse(reservation);
+        return ResponseEntity.ok(response);
     }
 }
