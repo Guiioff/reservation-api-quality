@@ -5,6 +5,7 @@ import br.com.devgui.reservationapi.api.dto.error.FieldErrorDetail;
 import br.com.devgui.reservationapi.api.dto.error.ValidationErrorResponse;
 import br.com.devgui.reservationapi.domain.exception.InvalidReservationException;
 import br.com.devgui.reservationapi.domain.exception.ReservationConflictException;
+import br.com.devgui.reservationapi.domain.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,5 +66,18 @@ public class GlobalExceptionHandler {
                 request.getRequestURI()
         );
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(
+            ResourceNotFoundException ex, HttpServletRequest request){
+        ErrorResponse errorResponse = new ErrorResponse(
+                Instant.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "Resource not found",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 }
