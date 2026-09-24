@@ -59,4 +59,11 @@ public class ReservationController {
         PageDTO<ReservationCompleteResponse> response = reservationMapper.toCompletePageDTO(reservationPage);
         return ResponseEntity.ok(response);
     }
+
+    @PatchMapping("/{id}/confirm")
+    public ResponseEntity<ReservationCompleteResponse> confirm(@PathVariable UUID id) {
+        Reservation reservation = reservationService.confirm(id);
+        ReservationCompleteResponse response = reservationMapper.toCompleteResponse(reservation);
+        return ResponseEntity.ok(response);
+    }
 }
