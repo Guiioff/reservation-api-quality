@@ -1,6 +1,7 @@
 package br.com.devgui.reservationapi.api.controller;
 
 import br.com.devgui.reservationapi.api.dto.request.CreateReservationRequest;
+import br.com.devgui.reservationapi.api.dto.response.PageDTO;
 import br.com.devgui.reservationapi.api.dto.response.ReservationCompleteResponse;
 import br.com.devgui.reservationapi.api.mapper.ReservationMapper;
 import br.com.devgui.reservationapi.domain.exception.InvalidReservationException;
@@ -13,6 +14,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +28,7 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.Mockito.*;
@@ -252,5 +258,95 @@ class ReservationControllerTest {
 
         verify(reservationService).findById(id);
         verify(reservationMapper, never()).toCompleteResponse(any(Reservation.class));
+    }
+
+    @Test
+    @DisplayName("Given existing reservations When find all reservations Then return 200 ok")
+    void givenExistingReservations_WhenFindAllReservations_ThenReturn200() throws Exception {
+        List<Reservation> reservations = List.of(
+                new Reservation(UUID.randomUUID(), "Guilherme", "guilherme@email.com",
+                        LocalDateTime.of(2026, 9, 25, 10, 0),
+                        LocalDateTime.of(2026, 9, 25, 12, 0), 3,
+                        ReservationStatus.PENDING, Instant.now(), Instant.now()),
+                new Reservation(UUID.randomUUID(), "Gabriel Barros", "gabriel@email.com",
+                        LocalDateTime.of(2026, 9, 25, 13, 0),
+                        LocalDateTime.of(2026, 9, 25, 15, 0), 5,
+                        ReservationStatus.PENDING, Instant.now(), Instant.now())
+        );
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Reservation> reservationPage = new PageImpl<>(reservations, pageable, reservations.size());
+
+        List<ReservationCompleteResponse> reservationCompleteResponses = List.of(
+                new ReservationCompleteResponse(
+                        reservations.get(0).getId(), reservations.get(0).getCustomerName(),
+                        reservations.get(0).getCustomerEmail(), reservations.get(0).getStartAt(),
+                        reservations.get(0).getEndAt(), reservations.get(0).getPeople(),
+                        reservations.get(0).getStatus(), reservations.get(0).getCreatedAt(),reservations.get(0).getUpdatedAt()
+                ),
+                new ReservationCompleteResponse(
+                        reservations.get(1).getId(), reservations.get(1).getCustomerName(),
+                        reservations.get(1).getCustomerEmail(), reservations.get(1).getStartAt(),
+                        reservations.get(1).getEndAt(), reservations.get(1).getPeople(),
+                        reservations.get(1).getStatus(), reservations.get(1).getCreatedAt(),reservations.get(1).getUpdatedAt()
+                )
+        );
+        PageDTO<ReservationCompleteResponse> pageDTO = new PageDTO<>(
+                reservationCompleteResponses,
+                (int) reservationPage.getTotalElements(),
+                reservationPage.getTotalPages(),
+                reservationPage.getPageable().getPageNumber(),
+                reservationPage.getPageable().getPageSize()
+        );
+
+        when(reservationService.findAll(pageable)).thenReturn(reservationPage);
+        when(reservationMapper.toCompletePageDTO(reservationPage)).thenReturn(pageDTO);
+
+        ResultActions response = mockMvc.perform(get(URL));
+
+        response.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isNotEmpty())
+                .andExpect(jsonPath("$.content.length()").value(reservations.size()))
+                .andExpect(jsonPath("$.content[0].id").value(reservations.get(0).getId().toString()))
+                .andExpect(jsonPath("$.content[1].id").value(reservations.get(1).getId().toString()))
+                .andExpect(jsonPath("$.totalElements").value(reservationPage.getTotalElements()))
+                .andExpect(jsonPath("$.totalPages").value(reservationPage.getTotalPages()))
+                .andExpect(jsonPath("$.page").value(0))
+                .andExpect(jsonPath("$.size").value(pageable.getPageSize()));
+
+        verify(reservationService).findAll(pageable);
+        verify(reservationMapper).toCompletePageDTO(reservationPage);
+    }
+
+    @Test
+    @DisplayName("Given no existing reservations When find all reservations Then return 200 ok")
+    void givenNoExistingReservations_WhenFindAllReservations_ThenReturn200() throws Exception {
+        List<Reservation> reservations = List.of();
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Reservation> reservationPage = new PageImpl<>(reservations, pageable, reservations.size());
+
+        PageDTO<ReservationCompleteResponse> pageDTO = new PageDTO<>(
+                List.of(),
+                (int) reservationPage.getTotalElements(),
+                reservationPage.getTotalPages(),
+                reservationPage.getPageable().getPageNumber(),
+                reservationPage.getPageable().getPageSize()
+        );
+
+        when(reservationService.findAll(pageable)).thenReturn(reservationPage);
+        when(reservationMapper.toCompletePageDTO(reservationPage)).thenReturn(pageDTO);
+
+        ResultActions response = mockMvc.perform(get(URL));
+
+        response.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isEmpty())
+                .andExpect(jsonPath("$.totalElements").value(0))
+                .andExpect(jsonPath("$.totalPages").value(0))
+                .andExpect(jsonPath("$.page").value(0))
+                .andExpect(jsonPath("$.size").value(pageable.getPageSize()));
+
+        verify(reservationService).findAll(pageable);
+        verify(reservationMapper).toCompletePageDTO(reservationPage);
     }
 }
