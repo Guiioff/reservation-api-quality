@@ -1,0 +1,151 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1790476091292,215,POST - Criar Reserva,201,,Thread Group 1-10,text,true,,562,364,20,20,http://localhost:8080/api/reservations,214,0,0
+1790476091370,136,POST - Criar Reserva,201,,Thread Group 1-14,text,true,,555,357,20,20,http://localhost:8080/api/reservations,135,0,1
+1790476091311,196,POST - Criar Reserva,201,,Thread Group 1-11,text,true,,556,358,20,20,http://localhost:8080/api/reservations,195,0,1
+1790476091331,176,POST - Criar Reserva,201,,Thread Group 1-12,text,true,,558,360,20,20,http://localhost:8080/api/reservations,175,0,1
+1790476091191,316,POST - Criar Reserva,201,,Thread Group 1-5,text,true,,555,357,20,20,http://localhost:8080/api/reservations,315,0,1
+1790476091272,235,POST - Criar Reserva,201,,Thread Group 1-9,text,true,,557,359,20,20,http://localhost:8080/api/reservations,234,0,0
+1790476091211,296,POST - Criar Reserva,201,,Thread Group 1-6,text,true,,557,359,20,20,http://localhost:8080/api/reservations,295,0,1
+1790476091231,276,POST - Criar Reserva,201,,Thread Group 1-7,text,true,,556,358,20,20,http://localhost:8080/api/reservations,275,0,1
+1790476091252,255,POST - Criar Reserva,201,,Thread Group 1-8,text,true,,556,358,20,20,http://localhost:8080/api/reservations,254,0,1
+1790476091132,375,POST - Criar Reserva,201,,Thread Group 1-2,text,true,,556,358,20,20,http://localhost:8080/api/reservations,374,0,0
+1790476091470,44,POST - Criar Reserva,201,,Thread Group 1-19,text,true,,559,361,21,21,http://localhost:8080/api/reservations,44,0,1
+1790476091430,84,POST - Criar Reserva,201,,Thread Group 1-17,text,true,,558,360,21,21,http://localhost:8080/api/reservations,84,0,1
+1790476091490,24,POST - Criar Reserva,201,,Thread Group 1-20,text,true,,562,364,21,21,http://localhost:8080/api/reservations,24,0,1
+1790476091410,104,POST - Criar Reserva,201,,Thread Group 1-16,text,true,,559,361,21,21,http://localhost:8080/api/reservations,104,0,1
+1790476091151,364,POST - Criar Reserva,201,,Thread Group 1-3,text,true,,558,360,21,21,http://localhost:8080/api/reservations,364,0,0
+1790476091113,403,POST - Criar Reserva,201,,Thread Group 1-1,text,true,,554,356,21,21,http://localhost:8080/api/reservations,402,0,2
+1790476091450,65,POST - Criar Reserva,201,,Thread Group 1-18,text,true,,558,360,21,21,http://localhost:8080/api/reservations,64,0,1
+1790476091390,124,POST - Criar Reserva,201,,Thread Group 1-15,text,true,,557,359,21,21,http://localhost:8080/api/reservations,124,0,1
+1790476091171,345,POST - Criar Reserva,201,,Thread Group 1-4,text,true,,553,355,21,21,http://localhost:8080/api/reservations,344,0,1
+1790476091351,165,POST - Criar Reserva,201,,Thread Group 1-13,text,true,,560,362,21,21,http://localhost:8080/api/reservations,164,0,1
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-5,text,true,,462,204,22,22,http://localhost:8080/api/reservations/cd050127-44e8-4e29-8bf8-b48205447887,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-12,text,true,,465,204,22,22,http://localhost:8080/api/reservations/31928336-166a-4085-a5d7-1973d21898a2,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-8,text,true,,463,204,22,22,http://localhost:8080/api/reservations/9d89088c-bb36-4e9d-95c6-702767d7bc1b,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-7,text,true,,463,204,22,22,http://localhost:8080/api/reservations/1df072cd-6559-4a4c-a388-943b2fbaad7f,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-2,text,true,,463,204,22,22,http://localhost:8080/api/reservations/1e6bff3a-2051-490f-9e69-c8dc56a3b2b4,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-14,text,true,,462,204,22,22,http://localhost:8080/api/reservations/85201783-ac01-4914-97ed-787a50a2232b,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-11,text,true,,463,204,22,22,http://localhost:8080/api/reservations/dc3e03fe-9093-4a1d-97ea-cfd8deb48322,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-6,text,true,,464,204,22,22,http://localhost:8080/api/reservations/fce71493-143a-45c9-8e66-f9304bb41f49,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-9,text,true,,464,204,22,22,http://localhost:8080/api/reservations/13bb91c5-6620-402c-a783-50adf069dfff,29,0,0
+1790476091508,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-10,text,true,,469,204,22,22,http://localhost:8080/api/reservations/0f5324ac-ff60-4b1f-8576-dee3a2e62b9e,29,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-19,text,true,,466,204,22,22,http://localhost:8080/api/reservations/a8366975-640c-44c2-abcb-e2f015603018,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-20,text,true,,469,204,22,22,http://localhost:8080/api/reservations/5df39e64-fc0a-45e7-bb70-778b18eac896,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-17,text,true,,465,204,22,22,http://localhost:8080/api/reservations/b49efce2-c592-4b51-8cbd-2c707f257fb6,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-1,text,true,,461,204,22,22,http://localhost:8080/api/reservations/4bdbe688-2e07-46b3-8e6e-ad9af5754f56,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-3,text,true,,465,204,22,22,http://localhost:8080/api/reservations/bf4d018f-0825-4579-9703-afad9f026c92,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-4,text,true,,460,204,22,22,http://localhost:8080/api/reservations/ca7e2cda-b08d-4269-baa8-7d2ce8360337,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-16,text,true,,466,204,22,22,http://localhost:8080/api/reservations/7917fcee-39cb-41ee-b846-9409b1d13753,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-18,text,true,,465,204,22,22,http://localhost:8080/api/reservations/a7866770-3ac9-486f-8820-58a1e6a3755c,27,0,0
+1790476091515,27,GET - Buscar Reserva pelo ID,200,,Thread Group 1-15,text,true,,464,204,22,22,http://localhost:8080/api/reservations/d3841eea-8da8-4f97-ae42-aa4581c11288,27,0,0
+1790476091511,34,POST - Criar Reserva,201,,Thread Group 1-21,text,true,,556,358,22,22,http://localhost:8080/api/reservations,34,0,1
+1790476091515,31,GET - Buscar Reserva pelo ID,200,,Thread Group 1-13,text,true,,467,204,22,22,http://localhost:8080/api/reservations/352ed316-e2ca-4b9f-bd79-17a1226967b8,31,0,0
+1790476091531,17,POST - Criar Reserva,201,,Thread Group 1-22,text,true,,552,360,22,22,http://localhost:8080/api/reservations,17,0,1
+1790476091538,26,PATCH - Confirmar Reserva,200,,Thread Group 1-11,text,true,,468,233,23,23,http://localhost:8080/api/reservations/dc3e03fe-9093-4a1d-97ea-cfd8deb48322/confirm,26,0,0
+1790476091538,27,PATCH - Confirmar Reserva,200,,Thread Group 1-10,text,true,,474,233,23,23,http://localhost:8080/api/reservations/0f5324ac-ff60-4b1f-8576-dee3a2e62b9e/confirm,26,0,0
+1790476091538,27,PATCH - Confirmar Reserva,200,,Thread Group 1-2,text,true,,468,233,23,23,http://localhost:8080/api/reservations/1e6bff3a-2051-490f-9e69-c8dc56a3b2b4/confirm,26,0,0
+1790476091538,27,PATCH - Confirmar Reserva,200,,Thread Group 1-14,text,true,,467,233,23,23,http://localhost:8080/api/reservations/85201783-ac01-4914-97ed-787a50a2232b/confirm,26,0,0
+1790476091538,27,PATCH - Confirmar Reserva,200,,Thread Group 1-12,text,true,,470,233,23,23,http://localhost:8080/api/reservations/31928336-166a-4085-a5d7-1973d21898a2/confirm,26,0,0
+1790476091538,27,PATCH - Confirmar Reserva,200,,Thread Group 1-7,text,true,,468,233,23,23,http://localhost:8080/api/reservations/1df072cd-6559-4a4c-a388-943b2fbaad7f/confirm,26,0,0
+1790476091538,28,PATCH - Confirmar Reserva,200,,Thread Group 1-5,text,true,,467,233,22,22,http://localhost:8080/api/reservations/cd050127-44e8-4e29-8bf8-b48205447887/confirm,26,0,0
+1790476091538,28,PATCH - Confirmar Reserva,200,,Thread Group 1-6,text,true,,469,233,22,22,http://localhost:8080/api/reservations/fce71493-143a-45c9-8e66-f9304bb41f49/confirm,27,0,0
+1790476091538,27,PATCH - Confirmar Reserva,200,,Thread Group 1-9,text,true,,469,233,22,22,http://localhost:8080/api/reservations/13bb91c5-6620-402c-a783-50adf069dfff/confirm,26,0,0
+1790476091538,27,PATCH - Confirmar Reserva,200,,Thread Group 1-8,text,true,,468,233,22,22,http://localhost:8080/api/reservations/9d89088c-bb36-4e9d-95c6-702767d7bc1b/confirm,26,0,0
+1790476091542,31,PATCH - Confirmar Reserva,200,,Thread Group 1-19,text,true,,468,233,14,14,http://localhost:8080/api/reservations/a8366975-640c-44c2-abcb-e2f015603018/confirm,31,0,0
+1790476091542,31,PATCH - Confirmar Reserva,200,,Thread Group 1-20,text,true,,474,233,14,14,http://localhost:8080/api/reservations/5df39e64-fc0a-45e7-bb70-778b18eac896/confirm,31,0,0
+1790476091542,31,PATCH - Confirmar Reserva,200,,Thread Group 1-17,text,true,,470,233,14,14,http://localhost:8080/api/reservations/b49efce2-c592-4b51-8cbd-2c707f257fb6/confirm,31,0,0
+1790476091542,31,PATCH - Confirmar Reserva,200,,Thread Group 1-4,text,true,,465,233,14,14,http://localhost:8080/api/reservations/ca7e2cda-b08d-4269-baa8-7d2ce8360337/confirm,31,0,0
+1790476091542,31,PATCH - Confirmar Reserva,200,,Thread Group 1-15,text,true,,469,233,14,14,http://localhost:8080/api/reservations/d3841eea-8da8-4f97-ae42-aa4581c11288/confirm,31,0,0
+1790476091542,32,PATCH - Confirmar Reserva,200,,Thread Group 1-16,text,true,,471,233,14,14,http://localhost:8080/api/reservations/7917fcee-39cb-41ee-b846-9409b1d13753/confirm,31,0,0
+1790476091542,32,PATCH - Confirmar Reserva,200,,Thread Group 1-3,text,true,,470,233,14,14,http://localhost:8080/api/reservations/bf4d018f-0825-4579-9703-afad9f026c92/confirm,31,0,0
+1790476091542,32,PATCH - Confirmar Reserva,200,,Thread Group 1-18,text,true,,470,233,12,12,http://localhost:8080/api/reservations/a7866770-3ac9-486f-8820-58a1e6a3755c/confirm,31,0,0
+1790476091546,28,PATCH - Confirmar Reserva,200,,Thread Group 1-13,text,true,,472,233,11,11,http://localhost:8080/api/reservations/352ed316-e2ca-4b9f-bd79-17a1226967b8/confirm,28,0,0
+1790476091546,31,GET - Buscar Reserva pelo ID,200,,Thread Group 1-21,text,true,,463,204,5,5,http://localhost:8080/api/reservations/a1ba5ac1-aeac-40f0-bf52-9d58bdf4dbf5,30,0,0
+1790476091548,29,GET - Buscar Reserva pelo ID,200,,Thread Group 1-22,text,true,,465,204,5,5,http://localhost:8080/api/reservations/b0c7a688-ba97-44b4-894d-4603380ddef7,28,0,0
+1790476091551,28,POST - Criar Reserva,201,,Thread Group 1-23,text,true,,560,362,5,5,http://localhost:8080/api/reservations,28,0,0
+1790476091571,10,POST - Criar Reserva,201,,Thread Group 1-24,text,true,,555,357,5,5,http://localhost:8080/api/reservations,10,0,1
+1790476091580,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-23,text,true,,467,204,5,5,http://localhost:8080/api/reservations/45251251-16c7-45fa-9baf-7c9d3484d265,3,0,0
+1790476091577,7,PATCH - Confirmar Reserva,200,,Thread Group 1-21,text,true,,468,233,5,5,http://localhost:8080/api/reservations/a1ba5ac1-aeac-40f0-bf52-9d58bdf4dbf5/confirm,6,0,0
+1790476091577,7,PATCH - Confirmar Reserva,200,,Thread Group 1-22,text,true,,470,233,4,4,http://localhost:8080/api/reservations/b0c7a688-ba97-44b4-894d-4603380ddef7/confirm,7,0,0
+1790476091581,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-24,text,true,,462,204,4,4,http://localhost:8080/api/reservations/bef5bbd7-9f79-492e-8467-0bdb0bf37785,3,0,0
+1790476091542,46,PATCH - Confirmar Reserva,200,,Thread Group 1-1,text,true,,466,233,3,3,http://localhost:8080/api/reservations/4bdbe688-2e07-46b3-8e6e-ad9af5754f56/confirm,31,0,0
+1790476091583,7,PATCH - Confirmar Reserva,200,,Thread Group 1-23,text,true,,472,233,3,3,http://localhost:8080/api/reservations/45251251-16c7-45fa-9baf-7c9d3484d265/confirm,7,0,0
+1790476091584,6,PATCH - Confirmar Reserva,200,,Thread Group 1-24,text,true,,467,233,2,2,http://localhost:8080/api/reservations/bef5bbd7-9f79-492e-8467-0bdb0bf37785/confirm,6,0,0
+1790476091590,7,POST - Criar Reserva,201,,Thread Group 1-25,text,true,,557,359,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091597,4,GET - Buscar Reserva pelo ID,200,,Thread Group 1-25,text,true,,464,204,1,1,http://localhost:8080/api/reservations/1d8d6058-185d-4995-b5c6-503b0a98b478,4,0,0
+1790476091601,6,PATCH - Confirmar Reserva,200,,Thread Group 1-25,text,true,,469,233,1,1,http://localhost:8080/api/reservations/1d8d6058-185d-4995-b5c6-503b0a98b478/confirm,5,0,0
+1790476091610,7,POST - Criar Reserva,201,,Thread Group 1-26,text,true,,559,361,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091617,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-26,text,true,,466,204,1,1,http://localhost:8080/api/reservations/92032d6d-b755-44e6-b511-ab8be7045425,3,0,0
+1790476091620,7,PATCH - Confirmar Reserva,200,,Thread Group 1-26,text,true,,471,233,1,1,http://localhost:8080/api/reservations/92032d6d-b755-44e6-b511-ab8be7045425/confirm,7,0,0
+1790476091630,8,POST - Criar Reserva,201,,Thread Group 1-27,text,true,,558,360,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091638,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-27,text,true,,465,204,1,1,http://localhost:8080/api/reservations/de13a1a0-e2f6-4518-911b-4e2835c33964,3,0,0
+1790476091641,6,PATCH - Confirmar Reserva,200,,Thread Group 1-27,text,true,,470,233,1,1,http://localhost:8080/api/reservations/de13a1a0-e2f6-4518-911b-4e2835c33964/confirm,6,0,0
+1790476091650,8,POST - Criar Reserva,201,,Thread Group 1-28,text,true,,552,360,1,1,http://localhost:8080/api/reservations,8,0,0
+1790476091658,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-28,text,true,,465,204,1,1,http://localhost:8080/api/reservations/f97b0481-4f76-43e1-9a36-ccc96bd6d75a,3,0,0
+1790476091662,5,PATCH - Confirmar Reserva,200,,Thread Group 1-28,text,true,,470,233,1,1,http://localhost:8080/api/reservations/f97b0481-4f76-43e1-9a36-ccc96bd6d75a/confirm,5,0,0
+1790476091670,8,POST - Criar Reserva,201,,Thread Group 1-29,text,true,,559,361,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091678,4,GET - Buscar Reserva pelo ID,200,,Thread Group 1-29,text,true,,466,204,1,1,http://localhost:8080/api/reservations/21c4db3a-c067-45d1-9a7c-f0bb762dab5b,4,0,0
+1790476091682,7,PATCH - Confirmar Reserva,200,,Thread Group 1-29,text,true,,471,233,1,1,http://localhost:8080/api/reservations/21c4db3a-c067-45d1-9a7c-f0bb762dab5b/confirm,6,0,0
+1790476091690,8,POST - Criar Reserva,201,,Thread Group 1-30,text,true,,562,364,1,1,http://localhost:8080/api/reservations,8,0,0
+1790476091699,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-30,text,true,,469,204,1,1,http://localhost:8080/api/reservations/78ca9750-c24a-4b1c-9fa2-953ea6d78551,3,0,0
+1790476091703,6,PATCH - Confirmar Reserva,200,,Thread Group 1-30,text,true,,474,233,1,1,http://localhost:8080/api/reservations/78ca9750-c24a-4b1c-9fa2-953ea6d78551/confirm,6,0,0
+1790476091710,7,POST - Criar Reserva,201,,Thread Group 1-31,text,true,,556,358,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091718,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-31,text,true,,463,204,1,1,http://localhost:8080/api/reservations/4d743807-24e7-415e-b625-631237d42dba,3,0,0
+1790476091721,6,PATCH - Confirmar Reserva,200,,Thread Group 1-31,text,true,,468,233,1,1,http://localhost:8080/api/reservations/4d743807-24e7-415e-b625-631237d42dba/confirm,6,0,0
+1790476091730,7,POST - Criar Reserva,201,,Thread Group 1-32,text,true,,558,360,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091738,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-32,text,true,,465,204,1,1,http://localhost:8080/api/reservations/9ad78938-4666-4952-904d-e75f3966657e,3,0,0
+1790476091741,6,PATCH - Confirmar Reserva,200,,Thread Group 1-32,text,true,,470,233,1,1,http://localhost:8080/api/reservations/9ad78938-4666-4952-904d-e75f3966657e/confirm,6,0,0
+1790476091751,10,POST - Criar Reserva,201,,Thread Group 1-33,text,true,,560,362,1,1,http://localhost:8080/api/reservations,10,0,0
+1790476091761,4,GET - Buscar Reserva pelo ID,200,,Thread Group 1-33,text,true,,467,204,1,1,http://localhost:8080/api/reservations/d3d030a2-8b3a-4371-97a3-ec51f4c2aa9a,4,0,0
+1790476091765,8,PATCH - Confirmar Reserva,200,,Thread Group 1-33,text,true,,472,233,2,2,http://localhost:8080/api/reservations/d3d030a2-8b3a-4371-97a3-ec51f4c2aa9a/confirm,7,0,0
+1790476091771,8,POST - Criar Reserva,201,,Thread Group 1-34,text,true,,555,357,1,1,http://localhost:8080/api/reservations,8,0,0
+1790476091780,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-34,text,true,,462,204,1,1,http://localhost:8080/api/reservations/da1158d7-f2d3-4cc1-8b35-5558dbb27973,3,0,0
+1790476091784,6,PATCH - Confirmar Reserva,200,,Thread Group 1-34,text,true,,467,233,1,1,http://localhost:8080/api/reservations/da1158d7-f2d3-4cc1-8b35-5558dbb27973/confirm,6,0,0
+1790476091791,7,POST - Criar Reserva,201,,Thread Group 1-35,text,true,,557,359,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091798,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-35,text,true,,464,204,1,1,http://localhost:8080/api/reservations/24b2e3b6-a462-4053-bb70-c749b760e86d,3,0,0
+1790476091801,6,PATCH - Confirmar Reserva,200,,Thread Group 1-35,text,true,,469,233,1,1,http://localhost:8080/api/reservations/24b2e3b6-a462-4053-bb70-c749b760e86d/confirm,6,0,0
+1790476091810,7,POST - Criar Reserva,201,,Thread Group 1-36,text,true,,559,361,1,1,http://localhost:8080/api/reservations,6,0,0
+1790476091817,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-36,text,true,,466,204,1,1,http://localhost:8080/api/reservations/1852f461-b656-4f61-8a74-80d020a98954,3,0,0
+1790476091820,5,PATCH - Confirmar Reserva,200,,Thread Group 1-36,text,true,,468,233,1,1,http://localhost:8080/api/reservations/1852f461-b656-4f61-8a74-80d020a98954/confirm,5,0,0
+1790476091830,7,POST - Criar Reserva,201,,Thread Group 1-37,text,true,,558,360,1,1,http://localhost:8080/api/reservations,6,0,0
+1790476091837,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-37,text,true,,465,204,1,1,http://localhost:8080/api/reservations/a5a512e9-18af-4bd0-a3aa-8863004e743b,3,0,0
+1790476091840,6,PATCH - Confirmar Reserva,200,,Thread Group 1-37,text,true,,470,233,1,1,http://localhost:8080/api/reservations/a5a512e9-18af-4bd0-a3aa-8863004e743b/confirm,6,0,0
+1790476091850,8,POST - Criar Reserva,201,,Thread Group 1-38,text,true,,558,360,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091858,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-38,text,true,,465,204,1,1,http://localhost:8080/api/reservations/992a07e3-6a73-451b-95dd-5b023402bf68,3,0,0
+1790476091861,10,PATCH - Confirmar Reserva,200,,Thread Group 1-38,text,true,,467,233,2,2,http://localhost:8080/api/reservations/992a07e3-6a73-451b-95dd-5b023402bf68/confirm,6,0,0
+1790476091870,10,POST - Criar Reserva,201,,Thread Group 1-39,text,true,,559,361,1,1,http://localhost:8080/api/reservations,10,0,0
+1790476091880,8,GET - Buscar Reserva pelo ID,200,,Thread Group 1-39,text,true,,466,204,1,1,http://localhost:8080/api/reservations/9dd00123-92b1-4f7f-9d0f-671a638c6f03,7,0,0
+1790476091888,7,PATCH - Confirmar Reserva,200,,Thread Group 1-39,text,true,,471,233,2,2,http://localhost:8080/api/reservations/9dd00123-92b1-4f7f-9d0f-671a638c6f03/confirm,7,0,0
+1790476091890,7,POST - Criar Reserva,201,,Thread Group 1-40,text,true,,562,364,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091897,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-40,text,true,,469,204,1,1,http://localhost:8080/api/reservations/0cf10ffd-4dc4-4cad-8763-8941e005fa77,3,0,0
+1790476091900,5,PATCH - Confirmar Reserva,200,,Thread Group 1-40,text,true,,474,233,1,1,http://localhost:8080/api/reservations/0cf10ffd-4dc4-4cad-8763-8941e005fa77/confirm,5,0,0
+1790476091910,8,POST - Criar Reserva,201,,Thread Group 1-41,text,true,,556,358,1,1,http://localhost:8080/api/reservations,8,0,2
+1790476091918,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-41,text,true,,463,204,1,1,http://localhost:8080/api/reservations/263b50dd-7d76-4de1-ba70-1d4caec8c7c6,3,0,0
+1790476091921,6,PATCH - Confirmar Reserva,200,,Thread Group 1-41,text,true,,468,233,1,1,http://localhost:8080/api/reservations/263b50dd-7d76-4de1-ba70-1d4caec8c7c6/confirm,6,0,0
+1790476091930,7,POST - Criar Reserva,201,,Thread Group 1-42,text,true,,558,360,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091937,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-42,text,true,,465,204,1,1,http://localhost:8080/api/reservations/6a917608-8b6b-40f4-bb7d-178081392a5b,3,0,0
+1790476091940,6,PATCH - Confirmar Reserva,200,,Thread Group 1-42,text,true,,470,233,1,1,http://localhost:8080/api/reservations/6a917608-8b6b-40f4-bb7d-178081392a5b/confirm,5,0,0
+1790476091950,7,POST - Criar Reserva,201,,Thread Group 1-43,text,true,,560,362,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476091957,4,GET - Buscar Reserva pelo ID,200,,Thread Group 1-43,text,true,,467,204,1,1,http://localhost:8080/api/reservations/f2dc4cee-0a9f-4800-bb67-92a3ff1d0adf,4,0,0
+1790476091961,6,PATCH - Confirmar Reserva,200,,Thread Group 1-43,text,true,,472,233,1,1,http://localhost:8080/api/reservations/f2dc4cee-0a9f-4800-bb67-92a3ff1d0adf/confirm,6,0,0
+1790476091970,9,POST - Criar Reserva,201,,Thread Group 1-44,text,true,,555,357,1,1,http://localhost:8080/api/reservations,9,0,1
+1790476091979,5,GET - Buscar Reserva pelo ID,200,,Thread Group 1-44,text,true,,462,204,1,1,http://localhost:8080/api/reservations/196168a9-2552-4a4b-9644-c2116a666770,5,0,0
+1790476091985,8,PATCH - Confirmar Reserva,200,,Thread Group 1-44,text,true,,467,233,2,2,http://localhost:8080/api/reservations/196168a9-2552-4a4b-9644-c2116a666770/confirm,7,0,0
+1790476091990,9,POST - Criar Reserva,201,,Thread Group 1-45,text,true,,557,359,1,1,http://localhost:8080/api/reservations,9,0,0
+1790476091999,4,GET - Buscar Reserva pelo ID,200,,Thread Group 1-45,text,true,,464,204,1,1,http://localhost:8080/api/reservations/f7b8896f-db51-429f-ad25-280eefb06d58,4,0,0
+1790476092004,5,PATCH - Confirmar Reserva,200,,Thread Group 1-45,text,true,,469,233,2,2,http://localhost:8080/api/reservations/f7b8896f-db51-429f-ad25-280eefb06d58/confirm,5,0,0
+1790476092010,7,POST - Criar Reserva,201,,Thread Group 1-46,text,true,,559,361,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476092018,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-46,text,true,,466,204,1,1,http://localhost:8080/api/reservations/a2c053e5-e03f-454e-aac0-55861a1dbb52,3,0,0
+1790476092021,5,PATCH - Confirmar Reserva,200,,Thread Group 1-46,text,true,,471,233,1,1,http://localhost:8080/api/reservations/a2c053e5-e03f-454e-aac0-55861a1dbb52/confirm,5,0,0
+1790476092030,6,POST - Criar Reserva,201,,Thread Group 1-47,text,true,,558,360,1,1,http://localhost:8080/api/reservations,6,0,0
+1790476092037,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-47,text,true,,465,204,1,1,http://localhost:8080/api/reservations/09d03f4e-1fde-44ef-b31d-f2707446cca4,3,0,0
+1790476092040,6,PATCH - Confirmar Reserva,200,,Thread Group 1-47,text,true,,470,233,1,1,http://localhost:8080/api/reservations/09d03f4e-1fde-44ef-b31d-f2707446cca4/confirm,6,0,0
+1790476092050,7,POST - Criar Reserva,201,,Thread Group 1-48,text,true,,558,360,1,1,http://localhost:8080/api/reservations,7,0,0
+1790476092058,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-48,text,true,,465,204,1,1,http://localhost:8080/api/reservations/74823140-f123-4da2-a755-1ca7e4768b14,3,0,0
+1790476092061,5,PATCH - Confirmar Reserva,200,,Thread Group 1-48,text,true,,470,233,1,1,http://localhost:8080/api/reservations/74823140-f123-4da2-a755-1ca7e4768b14/confirm,5,0,0
+1790476092070,6,POST - Criar Reserva,201,,Thread Group 1-49,text,true,,559,361,1,1,http://localhost:8080/api/reservations,6,0,0
+1790476092076,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-49,text,true,,466,204,1,1,http://localhost:8080/api/reservations/12d084d6-c42d-4dde-8afc-d4ef73c8c236,3,0,0
+1790476092079,5,PATCH - Confirmar Reserva,200,,Thread Group 1-49,text,true,,471,233,1,1,http://localhost:8080/api/reservations/12d084d6-c42d-4dde-8afc-d4ef73c8c236/confirm,5,0,0
+1790476092090,6,POST - Criar Reserva,201,,Thread Group 1-50,text,true,,562,364,1,1,http://localhost:8080/api/reservations,6,0,0
+1790476092096,3,GET - Buscar Reserva pelo ID,200,,Thread Group 1-50,text,true,,469,204,1,1,http://localhost:8080/api/reservations/4b96df6a-52ff-48ac-8307-2edd74ef3ab1,3,0,0
+1790476092099,5,PATCH - Confirmar Reserva,200,,Thread Group 1-50,text,true,,474,233,1,1,http://localhost:8080/api/reservations/4b96df6a-52ff-48ac-8307-2edd74ef3ab1/confirm,5,0,0
