@@ -1,12 +1,13 @@
 # Reservation API Quality
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![JUnit5](https://img.shields.io/badge/JUnit5-%23f5f5f5.svg?style=for-the-badge&logo=junit5&logoColor=dc524a)
-![Mockito](https://img.shields.io/badge/Mockito-%2378C257.svg?style=for-the-badge&logo=mockito&logoColor=white)
-![REST Assured](https://img.shields.io/badge/REST%20Assured-%234A4A4A.svg?style=for-the-badge)
-![JMeter](https://img.shields.io/badge/Apache%20JMeter-%23D22128.svg?style=for-the-badge&logo=apachejmeter&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+[![Java](https://badgen.net/badge/Java/21/orange)](https://www.oracle.com/java/)
+[![Spring](https://badgen.net/badge/Spring/4.1.1/6DB33F)](https://spring.io/)
+[![PostgreSQL](https://badgen.net/badge/PostgreSQL/17/316192)](https://www.postgresql.org/)
+[![JUnit 5](https://badgen.net/badge/JUnit%205/5/f5f5f5)](https://junit.org/junit5/)
+[![Mockito](https://badgen.net/badge/Mockito/5/78C257)](https://site.mockito.org/)
+[![REST Assured](https://badgen.net/badge/REST%20Assured/6/4A4A4A)](https://rest-assured.io/)
+[![Testcontainers](https://badgen.net/badge/Testcontainers/2.0.5/0D5C8C)](https://testcontainers.com/)
+[![JMeter](https://badgen.net/badge/Apache%20JMeter/5.6/D22128)](https://jmeter.apache.org/)
+[![CI](https://github.com/Guiioff/reservation-api-quality/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Guiioff/reservation-api-quality/actions/workflows/ci.yml)
 
 API REST para gerenciamento de reservas, desenvolvida com foco em **qualidade de software, automação de testes e testes de performance**.
 
@@ -26,11 +27,8 @@ O projeto contém testes unitários, testes de integração, testes de performan
 ## Estrutura do Projeto
 ``` text
 reservation-api-quality/
-│
 ├── src/
-│   │
 │   ├── main/
-│   │   │
 │   │   ├── java/
 │   │   │   └── br.com.devgui.reservationapi/
 │   │   │       ├── api/
@@ -50,7 +48,6 @@ reservation-api-quality/
 │   │   │           └── repository/           # Repositórios de persistência
 │   │   └── resources/
 │   │       └── application.properties       # Configurações da aplicação
-│   │
 │   └── test/
 │       └── java/
 │           └── br.com.devgui.reservationapi/
@@ -59,7 +56,6 @@ reservation-api-quality/
 │               ├── infrastructure/repository/ # Testes dos repositórios
 │               ├── integration/              # Testes de integração
 │               └── testconfig/               # Configuração dos Testcontainers
-
 ├── jmeter/
 │   ├── data/
 │   │   └── reservations.csv                  # Dados utilizados nos testes
